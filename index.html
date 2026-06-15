@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Descubre datos curiosos y cultura gastronómica de todo el mundo" />
+  <meta name="theme-color" content="#1e6fa8" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Sabores" />
+
+  <title>Sabores del Mundo – Cultura Gastronómica</title>
+
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Iconos Apple (fallback) -->
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+  <!-- Google Fonts: Playfair Display (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Iconos: Material Symbols (ligero, outline) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- Saltar al contenido: primer elemento del body para usuarios de teclado -->
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+  <!-- ===================== CABECERA ===================== -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">🍽</span>
+        <span class="brand-name">Sabores del Mundo</span>
+      </div>
+
+      <!-- Navegación principal -->
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul role="list">
+          <li><a href="#inicio"   class="nav-link">Inicio</a></li>
+          <li><a href="#catalogo" class="nav-link">Curiosidades</a></li>
+          <li><a href="#buscar"   class="nav-link">Buscar</a></li>
+        </ul>
+      </nav>
+
+      <!-- Botón menú móvil -->
+      <button
+        class="menu-toggle"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+      </button>
+    </div>
+
+    <!-- Menú móvil desplegable -->
+    <nav id="mobile-menu" class="mobile-nav" aria-label="Menú móvil" hidden>
+      <ul role="list">
+        <li><a href="#inicio"   class="nav-link">Inicio</a></li>
+        <li><a href="#catalogo" class="nav-link">Curiosidades</a></li>
+        <li><a href="#buscar"   class="nav-link">Buscar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===================== CONTENIDO PRINCIPAL ===================== -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- HERO -->
+    <section id="inicio" class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Cultura gastronómica mundial</p>
+        <h1 id="hero-title">El mundo en cada bocado</h1>
+        <p class="hero-description">
+          Viaja a través de sabores, tradiciones y secretos culinarios de todas las culturas.
+          Cada plato tiene una historia que merece ser contada.
+        </p>
+        <a href="#catalogo" class="btn-primary">
+          <span class="material-symbols-outlined" aria-hidden="true">explore</span>
+          Explorar curiosidades
+        </a>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-blob"></div>
+        <div class="hero-emoji-grid">
+          <span>🍜</span><span>🥘</span><span>🍣</span>
+          <span>🫔</span><span>🧆</span><span>🍛</span>
+          <span>🥗</span><span>🍝</span><span>🫕</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTADOR ESTADÍSTICAS -->
+    <section class="stats-bar" aria-label="Estadísticas de la aplicación">
+      <div class="stats-inner">
+        <div class="stat">
+          <span class="stat-number" id="stat-items">0</span>
+          <span class="stat-label">Curiosidades</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" id="stat-cats">0</span>
+          <span class="stat-label">Categorías</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" id="stat-countries">0</span>
+          <span class="stat-label">Países</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUSCADOR / FILTRO -->
+    <section id="buscar" class="search-section" aria-labelledby="search-title">
+      <div class="section-container">
+        <h2 id="search-title" class="section-title">Busca tu curiosidad</h2>
+        <div class="search-bar" role="search">
+          <label for="search-input" class="sr-only">Buscar por título, categoría o país</label>
+          <span class="material-symbols-outlined search-icon" aria-hidden="true">search</span>
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Buscar por título, categoría o país…"
+            autocomplete="off"
+            aria-label="Buscar curiosidades gastronómicas"
+          />
+          <button id="clear-search" class="clear-btn" aria-label="Limpiar búsqueda" hidden>
+            <span class="material-symbols-outlined" aria-hidden="true">close</span>
+          </button>
+        </div>
+
+        <!-- Filtros por categoría -->
+        <div class="filter-chips" role="group" aria-label="Filtrar por categoría">
+          <button class="chip chip-active" data-filter="all">Todas</button>
+          <!-- Se generan dinámicamente desde JS -->
+        </div>
+
+        <!-- Resultado de búsqueda (anuncio para lectores de pantalla) -->
+        <p id="search-status" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO DE CURIOSIDADES -->
+    <section id="catalogo" class="catalog-section" aria-labelledby="catalog-title">
+      <div class="section-container">
+        <h2 id="catalog-title" class="section-title">Curiosidades gastronómicas</h2>
+        <p class="section-subtitle">Haz clic en cualquier tarjeta para descubrir más detalles</p>
+
+        <!-- Grid generado por JS -->
+        <div
+          id="cards-grid"
+          class="cards-grid"
+          role="list"
+          aria-label="Lista de curiosidades gastronómicas"
+        ></div>
+
+        <!-- Estado vacío -->
+        <div id="empty-state" class="empty-state" hidden aria-live="polite">
+          <span class="material-symbols-outlined" aria-hidden="true">search_off</span>
+          <p>No se encontraron curiosidades con esa búsqueda.</p>
+          <button class="btn-secondary" id="reset-btn">Ver todas</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== MODAL DETALLE ===================== -->
+  <div
+    id="detail-modal"
+    class="modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    hidden
+  >
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Cerrar detalle">
+        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      </button>
+
+      <div class="modal-header">
+        <span id="modal-emoji" class="modal-emoji" aria-hidden="true"></span>
+        <div>
+          <span id="modal-category" class="modal-tag"></span>
+          <h2 id="modal-title" class="modal-title"></h2>
+          <p id="modal-country" class="modal-country"></p>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <p id="modal-description" class="modal-description"></p>
+
+        <div id="modal-facts" class="modal-facts">
+          <h3>Datos clave</h3>
+          <ul id="modal-facts-list" role="list"></ul>
+        </div>
+
+        <figure class="modal-image-wrap">
+          <img
+            id="modal-image"
+            src=""
+            alt=""
+            class="modal-image"
+            loading="lazy"
+          />
+          <figcaption id="modal-image-caption" class="modal-caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fondo oscuro modal (clic para cerrar) -->
+  <div id="modal-backdrop" class="modal-backdrop" hidden aria-hidden="true"></div>
+
+  <!-- ===================== PIE DE PÁGINA ===================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer-brand">
+        <span aria-hidden="true">🍽</span> Sabores del Mundo
+      </p>
+      <p class="footer-copy">
+        Una aplicación de cultura gastronómica · Hecha con
+        <span aria-label="amor">❤️</span> y HTML, CSS &amp; JS
+      </p>
+      <p class="footer-pwa">
+        <span class="material-symbols-outlined" aria-hidden="true">install_mobile</span>
+        Instálala en tu dispositivo para usarla sin conexión
+      </p>
+    </div>
+  </footer>
+
+  <!-- Banner instalación PWA -->
+  <div id="install-banner" class="install-banner" hidden role="complementary" aria-label="Instalar aplicación">
+    <div class="install-content">
+      <span aria-hidden="true">📲</span>
+      <p>¿Quieres acceder sin conexión? <strong>Instala Sabores del Mundo</strong></p>
+    </div>
+    <div class="install-actions">
+      <button id="install-btn" class="btn-install">Instalar</button>
+      <button id="dismiss-install" class="btn-dismiss" aria-label="Cerrar aviso de instalación">
+        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
