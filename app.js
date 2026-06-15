@@ -47,6 +47,7 @@ const curiosidades = [
       "El cuenco estaba boca abajo, lo que contribuyó a su conservación.",
       "El hallazgo se publicó en la revista Nature en octubre de 2005."
     ],
+    imagenUrl: "https://picsum.photos/seed/noodles1/800/450",
     imagenAlt: "Cuenco arqueológico con fideos de mijo de la antigua China"
   },
   {
@@ -66,6 +67,7 @@ const curiosidades = [
       "En África, la sal llegó a valer su peso en oro.",
       "La gabela (impuesto sobre la sal) fue causa de revoluciones en Francia."
     ],
+    imagenUrl: "https://picsum.photos/seed/salt2/800/450",
     imagenAlt: "Ilustración de legionarios romanos con sacos de sal como pago"
   },
   {
@@ -85,6 +87,7 @@ const curiosidades = [
       "Hernán Cortés llevó el cacao a España en 1528.",
       "El primer chocolate sólido se comercializó en 1847 en Bristol, Reino Unido."
     ],
+    imagenUrl: "https://picsum.photos/seed/cacao3/800/450",
     imagenAlt: "Mazorca de cacao abierta mostrando los granos en su interior"
   },
   {
@@ -104,6 +107,7 @@ const curiosidades = [
       "Nápoles lleva siglos fabricando pizza, con recetas documentadas desde 1790.",
       "La pizza Margherita tiene IGP (Indicación Geográfica Protegida) europea."
     ],
+    imagenUrl: "https://picsum.photos/seed/pizza4/800/450",
     imagenAlt: "Pizza Margherita recién salida del horno con tomate, mozzarella y albahaca"
   },
   {
@@ -123,6 +127,7 @@ const curiosidades = [
       "El Boston Tea Party (1773) fue una protesta contra el impuesto británico al té.",
       "Existen más de 1.500 variedades de té catalogadas en el mundo."
     ],
+    imagenUrl: "https://picsum.photos/seed/tea5/800/450",
     imagenAlt: "Tetera de porcelana china sobre una bandeja con tazas de té"
   },
   {
@@ -142,6 +147,7 @@ const curiosidades = [
       "El chicken tikka masala se reivindica como invención de los restaurantes indo-paquistaníes de Glasgow.",
       "Hay más de 30 regiones culinarias distintas en India con lenguajes propios de sabores."
     ],
+    imagenUrl: "https://picsum.photos/seed/spice6/800/450",
     imagenAlt: "Platos de especias coloridas como cúrcuma, comino y cardamomo en un mercado indio"
   },
   {
@@ -161,6 +167,7 @@ const curiosidades = [
       "La región de Kakheti produce el 70% del vino georgiano.",
       "El vino en kvevri puede fermentar con la piel de la uva varios meses, creando el 'vino naranja'."
     ],
+    imagenUrl: "https://picsum.photos/seed/wine7/800/450",
     imagenAlt: "Kvevri de arcilla georgiana semienterrados en el suelo de una bodega tradicional"
   },
   {
@@ -180,6 +187,7 @@ const curiosidades = [
       "México cuenta con más de 60 variedades de chile propias.",
       "El chile es la especia más consumida del mundo por delante de la pimienta negra."
     ],
+    imagenUrl: "https://picsum.photos/seed/chili8/800/450",
     imagenAlt: "Variedad de chiles rojos, verdes y amarillos en un mercado de especias"
   },
   {
@@ -199,6 +207,7 @@ const curiosidades = [
       "Los franceses consumen una media de 26 kg de queso por persona al año.",
       "La AOC (Appellation d'Origine Contrôlée) protege desde el origen hasta la elaboración."
     ],
+    imagenUrl: "https://picsum.photos/seed/cheese9/800/450",
     imagenAlt: "Tabla de quesos franceses con distintas texturas y cortezas sobre madera"
   },
   {
@@ -218,6 +227,7 @@ const curiosidades = [
       "El wasabi se usaba originalmente como antibacteriano contra parásitos.",
       "Japón consume el 80% del atún rojo capturado en todo el mundo."
     ],
+    imagenUrl: "https://picsum.photos/seed/sushi10/800/450",
     imagenAlt: "Piezas de nigiri sushi con salmón y atún sobre una tabla de madera"
   },
   {
@@ -237,6 +247,7 @@ const curiosidades = [
       "En Austria, el kipferl sigue siendo más suave y menos mantecoso que el croissant francés.",
       "El término 'croissant' (creciente) hace referencia a la forma de luna creciente."
     ],
+    imagenUrl: "https://picsum.photos/seed/croissant11/800/450",
     imagenAlt: "Croissants dorados recién horneados sobre papel de panadería"
   },
   {
@@ -256,6 +267,7 @@ const curiosidades = [
       "Se consumen unos 1.000 millones de tacos al año solo en la Ciudad de México.",
       "El 31 de marzo se celebra el Día Internacional del Taco."
     ],
+    imagenUrl: "https://picsum.photos/seed/taco12/800/450",
     imagenAlt: "Tacos al pastor con cilantro, cebolla y salsa verde en tortilla de maíz"
   }
 ];
@@ -381,7 +393,16 @@ function crearTarjeta(item, index) {
 
   article.innerHTML = `
     <div class="card-image-wrap">
-      <span class="card-emoji" role="img" aria-label="${item.emoji} representando ${item.titulo}">
+      <img
+        src="${item.imagenUrl}"
+        alt="${item.imagenAlt}"
+        class="card-img"
+        loading="lazy"
+        width="800"
+        height="450"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+      />
+      <span class="card-emoji card-emoji-fallback" role="img" aria-label="${item.emoji} representando ${item.titulo}" style="display:none">
         ${item.emoji}
       </span>
     </div>
@@ -524,12 +545,11 @@ function abrirModal(item) {
     lista.appendChild(li);
   });
 
-  // Imagen / emoji como fallback visual
+  // Imagen del modal desde picsum con alt descriptivo
   const img = document.getElementById("modal-image");
+  img.src = item.imagenUrl;
   img.alt = item.imagenAlt;
-
-  // Usamos el emoji como imagen visual (CSS lo muestra grande)
-  img.style.display = "none";  // Ocultamos el <img> vacío
+  img.style.display = "";   // Mostrar la imagen real
   document.getElementById("modal-image-caption").textContent = item.imagenAlt;
 
   // Mostrar modal con animación

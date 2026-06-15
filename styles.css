@@ -534,13 +534,28 @@ button { cursor: pointer; font-family: inherit; }
   align-items: center;
   justify-content: center;
   font-size: 4rem;
+  position: relative;
 }
 
-.card-emoji {
+/* Imagen real de picsum */
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
   transition: transform var(--transition-slow);
 }
 
-.card:hover .card-emoji {
+.card:hover .card-img {
+  transform: scale(1.06);
+}
+
+/* Emoji de fallback si la imagen falla */
+.card-emoji-fallback {
+  transition: transform var(--transition-slow);
+}
+
+.card:hover .card-emoji-fallback {
   transform: scale(1.15) rotate(-5deg);
 }
 
@@ -851,6 +866,12 @@ button { cursor: pointer; font-family: inherit; }
 .footer-copy {
   font-size: 0.88rem;
   color: rgba(232, 244, 253, 0.65);
+}
+
+.footer-copyright {
+  font-size: 0.78rem;
+  color: rgba(232, 244, 253, 0.45);
+  margin-top: var(--space-xs);
 }
 
 .footer-pwa {

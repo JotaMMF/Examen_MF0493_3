@@ -1,6 +1,6 @@
 {
-  "name": "Sabores del Mundo",
-  "short_name": "Sabores",
+  "name": "GastroJota",
+  "short_name": "GastroJota",
   "description": "Descubre datos curiosos y cultura gastronómica de todo el mundo",
   "start_url": "./index.html",
   "display": "standalone",
